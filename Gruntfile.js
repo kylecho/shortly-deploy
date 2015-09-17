@@ -114,7 +114,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat', 'uglify', 'cssmin', 'jshint', 'mochaTest'
+    'concat', 'uglify', 'cssmin', 'jshint'
   ]);
 
   grunt.registerTask('upload', function(n) {
