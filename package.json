@@ -31,6 +31,6 @@
     "bluebird": "1.0.8"
   },
   "devDependencies": {
-    "supertest": "^0.10.0"
+    "supertest": "^1.1.0"
   }
 }
