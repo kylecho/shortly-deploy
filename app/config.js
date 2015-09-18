@@ -1,48 +1,25 @@
 ///////////////
 // Mongoose  //
 ///////////////
-var _ = require('underscore');
 var mongoose = require('mongoose');
-var userModel = require('./models/user');
-var linkModel = require('./models/link');
-var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost:8080');
+mongoose.connect('mongodb://localhost/shortlydb', function (err) {
+  if (err) throw err;
+});
 var db = mongoose.connection;
-  
-var urlSchema = new Schema({
-  url: String,
-  base_url: String,
-  code: String,
-  title: String,
-  visits: Number
-  // TODO: add timestamp
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function() {
+  console.log('yay connected!');
 });
-
-var userSchema = new Schema({
-  username: { type: String, unique: true },
-  password: String
-  // TODO: add timestamp
-});
-
-
-var User = mongoose.model('User', userSchema);
-var Url = mongoose.model('Url', urlSchema);
-
-_.extend(User, userModel.User);
-
 
 module.exports = db;
 
 
-// var options = {
-//   db: { native_parser: true },
-//   server: { poolSize: 5 },
-//   replset: { rs_name: 'myReplicaSetName' },
-//   user: 'your_database_user',
-//   pass: 'password'
-// }
-// va db = mongoose.connect(uri, options);
+
+
+
 
 ///////////////
 // Bookshelf //
